@@ -10,7 +10,7 @@
     };
 
     var randomCat = function() {
-        var cats = ['tabby', 'bengal', 'persian', 'mainecoon', 'ragdoll', 'sphynx', 'siamese', 'korat', 'japanesebobtail', 'abyssinian', 'scottishfold'];
+        var cats = ['yamcha', 'kyuubei', 'kagura', 'mctoy', 'sachan', 'hijikata', 'shinpachi', 'tae', 'takasugi', 'tsuki', 'gintoki'];
         return cats[(Math.random() * cats.length) >>> 0];
     };
 

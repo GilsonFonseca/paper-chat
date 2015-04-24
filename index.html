@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
-	<title>Kitteh Anonymous Chat</title>
+	<title>Gintama Chat</title>
 
 	<link rel="icon" sizes="192x192" href="images/app-icon-192.png">
 	<link rel="icon" sizes="128x128" href="images/app-icon-128.png">
@@ -32,10 +32,10 @@
 <template is="auto-binding">
 
 <!-- Use your own publish_key and subscribe_key please -->
-<core-pubnub publish_key="pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695" subscribe_key="sub-c-f762fb78-2724-11e4-a4df-02ee2ddab7fe" uuid="{{uuid}}">
-	<core-pubnub-subscribe channel="polymer-chat" id="sub" on-callback="{{subscribeCallback}}" on-presence="{{presenceChanged}}" on-error="{{error}}">
-	    <core-pubnub-publish channel="polymer-chat" message="" id="pub" on-error="{{error}}"></core-pubnub-publish>
-		<core-pubnub-history channel="polymer-chat" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
+<core-pubnub publish_key="pub-c-6130047c-40ef-4230-92fe-fe7ae6816947" subscribe_key="sub-c-7c64e192-e9f8-11e4-b92a-02ee2ddab7fe" uuid="{{uuid}}">
+	<core-pubnub-subscribe channel="chat-polymer" id="sub" on-callback="{{subscribeCallback}}" on-presence="{{presenceChanged}}" on-error="{{error}}">
+	    <core-pubnub-publish channel="chat-polymer" message="" id="pub" on-error="{{error}}"></core-pubnub-publish>
+		<core-pubnub-history channel="chat-polymer" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
     </core-pubnub-subscribe>
 </core-pubnub>
 
@@ -45,6 +45,11 @@
     		<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
 	      	<div class="bottom uuid">{{uuid}}</div>
 	    </core-toolbar>
+		<google-signin clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
+
+<google-signin labelSignin="Sign-in" clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
+
+<google-signin theme="dark" width="iconOnly" clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
 
 	    <section layout vertical id="onlineList">
 	    	<core-item label="Online Now" class="subdue" layout horizontal center></core-item>
@@ -56,7 +61,7 @@
   	</core-header-panel>
 
   	<div tool layout horizontal flex>
-  		<div flex>Kitteh Anonymous</div>
+  		<div flex>Gintama Chat</div>
   		<core-icon icon="account-circle"></core-icon><span>{{occupancy}}</span>
   	</div>
 
