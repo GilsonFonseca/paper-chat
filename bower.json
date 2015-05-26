@@ -1,8 +1,8 @@
 {
-  "name": "Simple Chat MD",
+  "name": "Simple Chat",
   "version": "0.0.1",
   "authors": [
-    "Tomomi Imura <tomomi.i@gmail.com>"
+    "GETMeeting <getmeeting2015@gmail.com>"
   ],
   "description": "A simple chat demo in Material Design",
   "keywords": [
@@ -13,7 +13,7 @@
     "chat"
   ],
   "license": "MIT",
-  "homepage": "pubnub.com",
+  "homepage": "http://www.ufjf.br/getcomp/eventos/getmeeting/informacoes-do-evento/",
   "private": true,
   "ignore": [
     "**/.*",

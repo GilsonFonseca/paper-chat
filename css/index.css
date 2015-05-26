@@ -1,0 +1,108 @@
+body {
+      font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+      margin: 0;
+	  height: 100%;
+      padding: 24px;
+      color: #333;
+	  background-color:#DEDEDE;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+	  min-height: 0px;
+	  min-width: 500px;
+	  overflow: auto;
+    }
+    .toolbar {
+      color: #fff;
+      font-size: 100%;
+      padding: 1.0% 6%;
+    }
+	
+    .toolbar-1 {
+      background-color: #ce1126;
+    }
+
+    .bottom-toolbar-1 {
+      background-color: #0d904f;
+    }
+	#button{ 
+	background-color: #ce1126;
+	color: white;
+	height: 30px;
+	width: 23%;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 2px 1px 0px rgba(45,45,45,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(45,45,45,0.75);
+	box-shadow: 5px 5px 2px 0px rgba(45,45,45,0.75);
+    cursor: pointer;
+	font: inherit;
+	margin: 0;
+	outline: 0;
+	transition: all .1s linear;
+	}
+	#button:active{
+	color: #330000;
+	background-color: #FFFFFF;
+	/*CSS 3*/
+	border-radius: 10px 0px 10px 0px;	
+	box-shadow: 0 2px 0 #006599;
+	transform: translateY(3px);
+	height: 30px;
+	width: 23%;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 2px 1px 0px rgba(45,45,45,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(45,45,45,0.75);
+	box-shadow: 5px 5px 2px 0px rgba(45,45,45,0.75);
+	}
+	#formulario {
+		
+		margin: 1% 0% 0% 70%;
+		color: #333;
+		height: auto;
+		width: auto;
+		position: absolute;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: 6px 8px 10px rgba(45, 45, 5, 0.2);
+		padding: 1%;
+        background-color: #fff;
+		min-height: auto;
+		min-width: 320px;
+		scroll: auto;
+    }
+	#paper_button {
+		float:left;
+		font-size: 80%;
+        background-color: #57A695;
+		color: #fff;
+		top:10px;
+		}
+	#entrar{
+	background-color: #57A695; 
+	font-size: 80%;
+	color: #fff;
+	}
+	a{
+	font-size: 70%;
+	}
+	a:link {text-decoration: none;color: #57A695}
+	a:active {text-decoration: none;}
+	a:visited {text-decoration: none;color: #57A695}
+	a:hover {text-decoration: underline;color: #57A695}
+	
+	paper-radio-group.blue paper-radio-button::shadow #ink[checked] {
+      color: #4285f4;
+    }
+    
+    paper-radio-group.blue paper-radio-button::shadow #onRadio {
+      background-color: #4285f4;
+    }
+
+    paper-radio-group.blue paper-radio-button[checked]::shadow #offRadio {
+      border-color: #4285f4;
+    }

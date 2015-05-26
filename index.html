@@ -1,87 +1,73 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="description" content="Simple Chat Room">
-	<meta name="author" content="Tomomi Imura  @girlie_mac">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="mobile-web-app-capable" content="yes">
-	<title>Gintama Chat</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-	<link rel="icon" sizes="192x192" href="images/app-icon-192.png">
-	<link rel="icon" sizes="128x128" href="images/app-icon-128.png">
-	<link rel="apple-touch-icon" sizes="128x128" href="images/app-icon-128.png">
-	<link rel="apple-touch-icon-precomposed" sizes="128x128" href="images/app-icon-128.png">
+  <title>Chat</title>
 
-	<!-- Polymer -->
-	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link href="bower_components/core-icons/core-icons.html" rel="import">
+  <link href="bower_components/core-item/core-item.html" rel="import">
+  <link href="bower_components/core-menu-button/core-menu-button.html" rel="import">
+  <link href="bower_components/paper-button/paper-button.html" rel="import">
+  <link href="bower_components/paper-input/paper-input.html" rel="import">
+  <link href="bower_components/paper-radio-button/paper-radio-button.html" rel="import">
+  <link href="bower_components/paper-radio-group/paper-radio-group.html" rel="import">
+  <link rel="import" href="bower_components/core-collapse/core-collapse.html">
+  
+  
 
-	<link rel="import" href="bower_components/pubnub-polymer/pubnub-element.html">
-	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
-	<link rel="import" href="bower_components/core-item/core-item.html">
-	<link rel="import" href="bower_components/paper-input/paper-input.html">
-	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
-	<link rel="import" href="x-chat-list.html">
-	<link rel="stylesheet" href="css/style.css">
 </head>
+<body>
+  <template is="auto-binding">
+	
+	<div layout vertical fit>
+	
+		<div class="toolbar toolbar-1" layout horizontal center>
+		<div flex></div>
+		<core-icon icon="account-box" halign="left"> </core-icon> <paper-button onclick="document.querySelector('#collapse1').toggle()">ENTRAR</paper-button>
+    </div>
+	
+	<core-collapse id="collapse1" fixedSize  style="height: 300px; width: 10px">
+<div id="formulario">
 
-<body unresolved fullbleed>
-
-<template is="auto-binding">
-
-<!-- Use your own publish_key and subscribe_key please -->
-<core-pubnub publish_key="pub-c-6130047c-40ef-4230-92fe-fe7ae6816947" subscribe_key="sub-c-7c64e192-e9f8-11e4-b92a-02ee2ddab7fe" uuid="{{uuid}}">
-	<core-pubnub-subscribe channel="chat-polymer" id="sub" on-callback="{{subscribeCallback}}" on-presence="{{presenceChanged}}" on-error="{{error}}">
-	    <core-pubnub-publish channel="chat-polymer" message="" id="pub" on-error="{{error}}"></core-pubnub-publish>
-		<core-pubnub-history channel="chat-polymer" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
-    </core-pubnub-subscribe>
-</core-pubnub>
-
-<core-scaffold>
-	<core-header-panel navigation flex>
-	    <core-toolbar id="navheader" class="tall">
-    		<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
-	      	<div class="bottom uuid">{{uuid}}</div>
-	    </core-toolbar>
-		<google-signin clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
-
-<google-signin labelSignin="Sign-in" clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
-
-<google-signin theme="dark" width="iconOnly" clientId="..." scopes="https://www.googleapis.com/auth/drive"></google-signin>
-
-	    <section layout vertical id="onlineList">
-	    	<core-item label="Online Now" class="subdue" layout horizontal center></core-item>
-
-	   		<template repeat="{{cat in cats}}">
-	   			<core-item label="{{cat}}"></core-item>
-	   		</template>
-	    </section>
-  	</core-header-panel>
-
-  	<div tool layout horizontal flex>
-  		<div flex>Gintama Chat</div>
-  		<core-icon icon="account-circle"></core-icon><span>{{occupancy}}</span>
-  	</div>
-
-  	<section layout vertical fit id="chat">
-		<div flex class="chat-list">
-			<template repeat="{{message in messageList}}">
-				<x-chat-list color="{{message.color}}" avatar="{{message.avatar}}" username="{{message.uuid}}" text="{{message.text}}"  status="{{message.status}}" timestamp="{{message.timestamp}}"></x-chat-list>
-			</template>
+  <!--Usuário-->
+		<div>
+			<paper-input-decorator id="user" label="Usuário" floatinglabel type="text" value="{{user}}" error="Usuário deve conter apenas letras e no mímino 3">
+				<input id="user1" type="text" name="usuario" is="core-input"  pattern="^[A-Za-z*]{3,}$" required>
+			</paper-input-decorator >
 		</div>
-		<div class="shim"></div>
+		
+	<!--Escolha do Sexo-->
+	<paper-radio-group id="sexo" selected="">
+    <paper-radio-button id="masc" name="masculino" label="Masculino"></paper-radio-button>
+    <paper-radio-button id="femin" name="feminino" label="Feminino"></paper-radio-button>
+</paper-radio-group>
 
-		<div class="send-message" layout horizontal>
-	    	<paper-input flex label="Type message..." id="input" value="{{input}}" on-keyup="{{checkKey}}"></paper-input>
-	    	<paper-fab icon="send" id="sendButton" on-tap="{{sendMyMessage}}"></paper-fab>
-	    </div>
-  	</section>
-</core-scaffold>
+  <!--Botão de Login-->
+		<input type="submit" name="logar" id="button" raised="true" value="ENTRAR" onclick="myFunction()" is="core-input">
+		 <!---->
+		</br>
+		</br>	
+</div>
+</core-collapse> 
+  </template>
+  <script>
+  function myFunction() {
+     var teste = document.getElementById('user1').value;
+     if(document.getElementById('masc').checked)
+        var sexo = document.getElementById('masc');
+     else
+        if(document.getElementById('femin').checked)
+           var sexo = document.getElementById('femin');
+        else
+          alert("Selecione um sexo");
+     alert(sexo.label);
+     window.open("chat.html", "_self");
 
-</template>
-
-<script src="js/app.js"></script>
+  }
+  </script>
 </body>
 </html>

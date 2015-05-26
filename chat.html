@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Simple Chat Room">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<title>Gintama Chat</title>
+
+	<link rel="icon" sizes="192x192" href="images/app-icon-192.png">
+	<link rel="icon" sizes="128x128" href="images/app-icon-128.png">
+	<link rel="apple-touch-icon" sizes="128x128" href="images/app-icon-128.png">
+	<link rel="apple-touch-icon-precomposed" sizes="128x128" href="images/app-icon-128.png">
+
+	<!-- Polymer -->
+	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+	<link rel="import" href="bower_components/pubnub-polymer/pubnub-element.html">
+	<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+	<link rel="import" href="bower_components/core-item/core-item.html">
+	<link rel="import" href="bower_components/paper-input/paper-input.html">
+	<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+	<link rel="import" href="bower_components/google-map/google-map.html">
+	<link rel="import" href="hello-world.html">
+	<link rel="import" href="x-chat-list.html">
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body unresolved fullbleed>
+
+<template is="auto-binding">
+
+<!-- Use your own publish_key and subscribe_key please -->
+<core-pubnub publish_key="pub-c-f65e4967-a74a-4c5f-9772-a3008c7fb9a2" subscribe_key="sub-c-b6d108c6-032d-11e5-becf-0619f8945a4f" uuid="{{uuid}}">
+	<core-pubnub-subscribe channel="chat-polymer" id="sub" on-callback="{{subscribeCallback}}" on-presence="{{presenceChanged}}" on-error="{{error}}">
+	    <core-pubnub-publish channel="chat-polymer" message="" id="pub" on-error="{{error}}"></core-pubnub-publish>
+		<core-pubnub-history channel="chat-polymer" count="30" on-success="{{historyRetrieved}}" on-error="{{error}}"></core-pubnub-history>
+    </core-pubnub-subscribe>
+</core-pubnub>
+
+<core-scaffold>
+	<core-header-panel navigation flex>
+	    <core-toolbar id="navheader" class="tall">
+    		<div class="middle avatar {{color}}" style="background-image: url({{avatar}})"></div>
+	      	<div class="bottom uuid" id="test">{{uuid}}</div>
+	    </core-toolbar>
+
+	    <section layout vertical id="onlineList">
+	    	<core-item label="Online Now" class="subdue" layout horizontal center></core-item>
+
+	   		<template repeat="{{cat in cats}}">
+	   			<core-item label="{{cat}}"></core-item>
+	   		</template>
+	    </section>
+  	</core-header-panel>
+
+  	<div tool layout horizontal flex>
+  		<div flex>Gintama Chat</div>
+  		<core-icon icon="account-circle"></core-icon><span>{{occupancy}}</span>
+  	</div>
+
+  	<section layout vertical fit id="chat">
+		<div flex class="chat-list">
+			<template repeat="{{message in messageList}}">
+				<x-chat-list color="{{message.color}}" avatar="{{message.avatar}}" username="{{message.uuid}}" text="{{message.text}}"  status="{{message.status}}" timestamp="{{message.timestamp}}"></x-chat-list>
+			</template>
+		</div>
+		<div class="shim"></div>
+
+		<div class="send-message" layout horizontal>
+	    	<paper-input flex label="Type message..." id="input" value="{{input}}" on-keyup="{{checkKey}}"></paper-input>
+	    	<my-button id="sendButton" on-tap="{{sendMyMessage}}"></my-button>
+	    </div>
+  	</section>
+</core-scaffold>
+
+</template>
+
+<script src="js/app.js"></script>
+</body>
+</html>
